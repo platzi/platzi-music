@@ -13,6 +13,9 @@ const Background = styled.div`
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 100% auto;
+  @media (max-width: 1024px) {
+    background: rgb(233, 131, 238);
+  }
 `;
 
 const Wrapper = styled.div`
