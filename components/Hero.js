@@ -22,6 +22,9 @@ const Wrapper = styled.div`
   max-width: 1024px;
   text-align: center;
   margin: 0 auto;
+  @media (max-width: 1024px) {
+    padding: 1rem;
+  }
 `;
 
 function Hero(props) {
