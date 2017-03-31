@@ -15,12 +15,20 @@ const Background = styled.div`
   background-size: 100% auto;
 `;
 
+const Wrapper = styled.div`
+  max-width: 1024px;
+  text-align: center;
+  margin: 0 auto;
+`;
+
 function Hero(props) {
   return(
     <Background>
       <Gradient>
-        <Logo/>
-        <Buscador/>
+        <Wrapper>
+          <Logo/>
+          <Buscador/>
+        </Wrapper>
       </Gradient>
     </Background>
   );
