@@ -4,7 +4,7 @@ import Buscador from './Searcher';
 import styled from 'styled-components';
 
 const Gradient = styled.div`
-  background: linear-gradient(to left, rgba(81, 121, 255, 0.5), rgba(233, 131, 238, 0.5));
+  background: linear-gradient(to left, ${props=>props.theme.color.primary}, ${props=>props.theme.color.secondary});
   padding: 80px 0 186px;
 `;
 
