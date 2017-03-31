@@ -15,6 +15,7 @@ class PlatziMusic extends Document {
             href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"
             rel="stylesheet"
           />
+          <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet" />
         </Head>
         <body>
           <Main />
