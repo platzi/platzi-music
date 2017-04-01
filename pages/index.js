@@ -6,6 +6,8 @@ import { pinkTheme } from '../lib/theme.js';
 import Loading from '../components/Loading';
 import { Grid } from 'react-styled-flexboxgrid';
 import '../lib/global';
+import Logo from '../components/Logo';
+import Title from '../components/Title';
 
 class HomePage extends Component {
   state = {
@@ -27,7 +29,10 @@ class HomePage extends Component {
         <div>
           <Hero
             onSubmit={this.handleSubmit}
-          />
+          >
+            <Logo />
+            <Title />
+          </Hero>
           <Grid>
             {
               this.state.loading &&
