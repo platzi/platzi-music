@@ -7,6 +7,7 @@ const TrackItem = styled.li`
   color: ${props => props.theme.color.grayB};
 `;
 
+// ¿Este elemento tendrá eventos? SI class
 class Track extends Component {
   render() {
     console.log(this.props)

@@ -26,7 +26,7 @@ const Wrapper = styled.div`
     padding: 1rem;
   }
 `;
-
+// ¿Este elemento tendrá eventos? NO function
 // es invocado desde HomePage
 function Hero(props) {
   return(
