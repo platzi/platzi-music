@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import fetch from 'isomorphic-fetch';
-import Track from '../components/Track.js';
+import Track from '../components/Track';
 
 class ResultsPage extends Component {
   static async getInitialProps({ query }) {
@@ -24,8 +24,8 @@ class ResultsPage extends Component {
               item => {
                 const lol = item.name + 'lol';
                 let itemProps = item;
-                if (itemProps.name === 'despacito') {
-                  itemProps = {...item, name: 'suavecito'}
+                if (itemProps.name === 'Despacito (Featuring Daddy Yankee)') {
+                  itemProps = {...item, name: 'Suavecito'}
                 }
                 return (
                   <Track
