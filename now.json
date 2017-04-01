@@ -1,0 +1,8 @@
+{
+  "name": "platzi-music",
+  "alias": "platzi-music.now.sh",
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "type": "npm"
+}
