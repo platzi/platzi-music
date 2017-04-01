@@ -17,7 +17,7 @@ const animation = keyframes`
 const Item = styled.div`
   display: flex;
   justify-content: space-around;
-  height: 50px;
+  height: 70px;
   position: relative;
   overflow: hidden;
   background: #e9eaed;

@@ -44,6 +44,18 @@ class Track extends Component {
         playlist: [{...this.props}]
       }
     })
+    this.props.dispatch({
+      type: 'SET_CURRENT_TRACK',
+      payload: {
+        index: 0,
+      }
+    })
+    this.props.dispatch({
+      type: 'SET_ALBUM_DATA',
+      payload: {
+        data: this.props.album,
+      }
+    })
     this.context.setCurrentTrack(this.props)
   }
   render() {

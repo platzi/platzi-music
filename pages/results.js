@@ -15,10 +15,13 @@ import '../lib/global';
 import withRedux from 'next-redux-wrapper';
 import { createStore } from 'redux';
 import reducer from '../reducers/index';
+import Logo from '../components/Logo';
 
 const data = {
   playlist: [],
   nombre: 'leonidas',
+  currentTrack: 0,
+  album: {},
 }
 const makeStore = function(initialState = data) {
   return createStore(reducer, initialState)
@@ -82,7 +85,10 @@ class ResultsPage extends Component {
           <Player />
           <Hero
             onSubmit={this.handleSubmit}
-          />
+            sm
+          >
+            <Logo />
+          </Hero>
           <Grid>
             <Row>
               <Col xs={12}>

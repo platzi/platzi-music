@@ -6,6 +6,12 @@ import { connect } from 'react-redux';
 
 const Item = styled.div`
   margin-bottom: 1em;
+  cursor: pointer;
+  &:hover {
+    & h4 {
+      text-decoration: underline;
+    }
+  }
 `;
 
 const Thumb = styled.img`
@@ -19,7 +25,7 @@ const Title = styled.h4`
   font-family: ${props => props.theme.font.title};
   font-size: 1rem;
   font-weight: bold;
-  margin: 0;
+  margin: .5em 0;
 `;
 
 const Text = styled.p`
@@ -40,6 +46,12 @@ async function getAlbum(url) {
 class Album extends Component {
   handleClick = event => {
     const album = getAlbum(this.props.href)
+    this.props.dispatch({
+      type: 'SET_ALBUM_DATA',
+      payload: {
+        data: this.props,
+      }
+    })
     album.then( (data) => {
       console.log(data);
       this.props.dispatch({
@@ -48,6 +60,7 @@ class Album extends Component {
           playlist: data.tracks.items,
         }
       })
+
     })
 
   }

@@ -3,7 +3,8 @@ import styled, { keyframes } from 'styled-components';
 import { Grid, Row, Col } from 'react-styled-flexboxgrid';
 import { formattedTime } from '../lib/utils';
 import { connect } from 'react-redux';
-import AlbumTrack from './AlbumTrack'
+import AlbumTrack from './AlbumTrack';
+import PlayerAlbum from './PlayerAlbum';
 
 const bounceIn = keyframes`
   from, 20%, 40%, 60%, 80%, to {
@@ -88,6 +89,8 @@ const Play = styled(Button)`
 
 const Timer = styled.span`
   color: ${props => props.theme.color.grayB};
+  width: 50px;
+  display: inline-block;
 `;
 const Buttons = styled.div`
   display: flex;
@@ -123,7 +126,6 @@ class Player extends Component {
   }
   handleTogglePlay = (event) => {
     if (this.audio.paused) {
-      this.audio.src = this.context.currentTrack.preview_url;
       this.audio.play();
     } else {
       this.audio.pause();
@@ -146,11 +148,11 @@ class Player extends Component {
       currentProgress: (event.target.currentTime * 100) / event.target.duration,
     })
   }
-  willReceiveProps() {
-    this.setState({
-      paused: false,
-    })
-  }
+  // willReceiveProps() {
+  //   this.setState({
+  //     paused: false,
+  //   })
+  // }
   onLoadedMetadata = event => {
     console.log(event.target.duration)
     this.setState({
@@ -162,6 +164,22 @@ class Player extends Component {
       expanded: !this.state.expanded,
     });
   }
+  handlePrevTrack = event => {
+    this.props.dispatch({
+      type: 'SET_CURRENT_TRACK',
+      payload: {
+        index: this.props.currentTrack - 1,
+      }
+    })
+  }
+  handleNextTrack = event => {
+    this.props.dispatch({
+      type: 'SET_CURRENT_TRACK',
+      payload: {
+        index: this.props.currentTrack + 1,
+      }
+    })
+  }
   render() {
     // this.state
     // this.props
@@ -171,6 +189,7 @@ class Player extends Component {
     }
     const expandIcon = this.state.expanded ? 'icon-arrow-bottom' : 'icon-arrow-top';
 
+    const currentTrack = this.props.playlist[this.props.currentTrack];
     return (
       <Wrapper className="">
         <PlayerGrid>
@@ -183,12 +202,14 @@ class Player extends Component {
 
           <Row bottom="xs">
             <Col xs={5}>
-              {this.props.playlist[0].name}
+              <PlayerAlbum
+                trackName={currentTrack.name}
+              />
             </Col>
             <Col xs={7}>
               <PlayerUI>
                 <audio
-                  src={this.props.playlist[0].preview_url}
+                  src={currentTrack.preview_url}
                   ref={(audio) => { this.audio = audio; }}
                   onLoadedMetadata={this.onLoadedMetadata}
                   onTimeUpdate={this.onTimeUpdate}
@@ -250,6 +271,7 @@ function mapStateToProps(state) {
   return {
     nombreDesdeEstado: state.nombre,
     playlist: state.playlist,
+    currentTrack: state.currentTrack,
   }
 }
 

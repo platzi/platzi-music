@@ -21,24 +21,17 @@ const Music = styled.span`
   ${LogoStyles}
 `;
 
-const Subtitle = styled.div`
-  font-size: 18px;
-  margin: 24px 0 60px;
-  color: white;
-  ${DefaultStyles}
-`;
-
+const Title = styled.div`
+  margin-bottom: 1em;
+`
 
 function Logo(props) {
   return (
     <div>
-      <div>
+      <Title>
         <Platzi>Platzi</Platzi>
         <Music>Music</Music>
-      </div>
-      <Subtitle>
-        Tu música sin límites
-      </Subtitle>
+      </Title>
     </div>
   );
 }
