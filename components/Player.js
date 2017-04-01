@@ -3,7 +3,8 @@ import styled, { keyframes } from 'styled-components';
 import { Grid, Row, Col } from 'react-styled-flexboxgrid';
 import { formattedTime } from '../lib/utils';
 import { connect } from 'react-redux';
-import AlbumTrack from './AlbumTrack'
+import AlbumTrack from './AlbumTrack';
+import PlayerAlbum from './PlayerAlbum';
 
 const bounceIn = keyframes`
   from, 20%, 40%, 60%, 80%, to {
@@ -188,6 +189,7 @@ class Player extends Component {
     }
     const expandIcon = this.state.expanded ? 'icon-arrow-bottom' : 'icon-arrow-top';
 
+    const currentTrack = this.props.playlist[this.props.currentTrack];
     return (
       <Wrapper className="">
         <PlayerGrid>
@@ -200,12 +202,14 @@ class Player extends Component {
 
           <Row bottom="xs">
             <Col xs={5}>
-              {this.props.playlist[this.props.currentTrack].name}
+              <PlayerAlbum
+                trackName={currentTrack.name}
+              />
             </Col>
             <Col xs={7}>
               <PlayerUI>
                 <audio
-                  src={this.props.playlist[this.props.currentTrack].preview_url}
+                  src={currentTrack.preview_url}
                   ref={(audio) => { this.audio = audio; }}
                   onLoadedMetadata={this.onLoadedMetadata}
                   onTimeUpdate={this.onTimeUpdate}

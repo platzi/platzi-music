@@ -21,6 +21,7 @@ const data = {
   playlist: [],
   nombre: 'leonidas',
   currentTrack: 0,
+  album: {},
 }
 const makeStore = function(initialState = data) {
   return createStore(reducer, initialState)

@@ -4,6 +4,8 @@ function reducer(state, action) {
       return { ...state, playlist: action.payload.playlist }
     case 'SET_CURRENT_TRACK':
       return { ...state, currentTrack: action.payload.index}
+    case 'SET_ALBUM_DATA':
+      return { ...state, album: action.payload.data }
     default:
       return state
   }

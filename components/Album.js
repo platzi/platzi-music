@@ -46,6 +46,12 @@ async function getAlbum(url) {
 class Album extends Component {
   handleClick = event => {
     const album = getAlbum(this.props.href)
+    this.props.dispatch({
+      type: 'SET_ALBUM_DATA',
+      payload: {
+        data: this.props,
+      }
+    })
     album.then( (data) => {
       console.log(data);
       this.props.dispatch({
@@ -54,6 +60,7 @@ class Album extends Component {
           playlist: data.tracks.items,
         }
       })
+
     })
 
   }
