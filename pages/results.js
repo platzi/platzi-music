@@ -12,6 +12,13 @@ import Router from 'next/router';
 import Hero from '../components/Hero';
 import Player from '../components/Player';
 import '../lib/global';
+import withRedux from 'next-redux-wrapper';
+import { createStore } from 'redux';
+import reducer from '../reducers/index';
+
+const makeStore = function(initialState = {}) {
+  return store = createStore(reducer, initialState)
+}
 
 const Results = styled.section`
   ul {
@@ -134,4 +141,4 @@ ResultsPage.childContextTypes = {
   setCurrentTrack: PropTypes.func,
 }
 
-export default ResultsPage;
+export default withRedux(makeStore)(ResultsPage);

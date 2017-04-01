@@ -138,7 +138,6 @@ class Player extends Component {
     console.log(event.target.currentTime)
     this.setState({
       currentTime: event.target.currentTime,
-      duration: event.target.duration,
       currentProgress: (event.target.currentTime * 100) / event.target.duration,
     })
   }
