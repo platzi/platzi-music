@@ -10,7 +10,6 @@ const TrackItem = styled.li`
 // ¿Este elemento tendrá eventos? SI class
 class Track extends Component {
   render() {
-    console.log(this.props)
     return (
       <TrackItem>
         <Row middle="sm">

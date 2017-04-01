@@ -112,6 +112,27 @@ const Expand = styled.button`
 class Player extends Component {
   state = {
     paused: true,
+    duration: 0,
+  }
+  handleTogglePlay = (event) => {
+    if (this.audio.paused) {
+      this.audio.src ='/static/despacito.mp3';
+      this.audio.play();
+    } else {
+      this.audio.pause();
+    }
+    this.setState({
+      paused: !this.state.paused
+    })
+  }
+  onPlay = (event) => {
+    console.log('le diste a play');
+  }
+  onLoadedMetadata = event => {
+    console.log(event.target.duration)
+    this.setState({
+      duration: event.target.duration
+    })
   }
   render() {
     return (
@@ -127,18 +148,12 @@ class Player extends Component {
             </Col>
             <Col xs={7}>
               <PlayerUI>
-                {/*<audio
-                  src={this.props.playlist[this.props.currentTrack].preview_url}
+                <audio
+                  src=""
                   ref={(audio) => { this.audio = audio; }}
-                  onProgress={this.onProgress}
-                  onTimeUpdate={this.onTimeUpdate}
                   onLoadedMetadata={this.onLoadedMetadata}
-                  onPause={this.handlePause}
                   onPlay={this.onPlay}
-                  onEnded={this.onEnded}
-                  onDurationChange={this.onDurationChange}
-                  autoPlay
-                />*/}
+                />
                 <Buttons>
                   <Timer>
                     tiempo
@@ -158,7 +173,7 @@ class Player extends Component {
                     />
                   </div>
                   <Timer>
-                    tiempo
+                    {this.state.duration}
                   </Timer>
                 </Buttons>
                 <Line>
