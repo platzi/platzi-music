@@ -3,7 +3,8 @@ import Hero from '../components/Hero';
 import { ThemeProvider } from 'styled-components';
 import Router from 'next/router';
 import { pinkTheme } from '../lib/theme.js';
-
+import Loading from '../components/Loading';
+import { Grid } from 'react-styled-flexboxgrid';
 
 class HomePage extends Component {
   state = {
@@ -26,12 +27,12 @@ class HomePage extends Component {
           <Hero
             onSubmit={this.handleSubmit}
           />
-          {
-            this.state.loading ?
-              <div>cargando...</div>
-            :
-              <div>no estamos cargando nada...</div>
-          }
+          <Grid>
+            {
+              this.state.loading &&
+              <Loading />
+            }
+          </Grid>
         </div>
       </ThemeProvider>
     );
