@@ -10,6 +10,7 @@ import Album from '../components/Album';
 import Artist from '../components/Artist';
 import Router from 'next/router';
 import Hero from '../components/Hero';
+import Player from '../components/Player';
 
 const Results = styled.section`
   ul {
@@ -42,6 +43,7 @@ class ResultsPage extends Component {
     return (
       <ThemeProvider theme={pinkTheme}>
         <Results>
+          <Player />
           <Hero
             onSubmit={this.handleSubmit}
           />
@@ -83,20 +85,25 @@ class ResultsPage extends Component {
               }
               </Row>
             </ul>
-            <h2>Artistas</h2>
-            <ul>
-              <Row>
-                {
-                  this.props.artists.items.map(
-                    item => (
-                      <Col xs={12} sm={4}>
-                        <Artist key={item.id} {...item} />
-                      </Col>
-                    )
-                  )
-                }
-              </Row>
-            </ul>
+            { this.props.artists &&
+              <div>
+                <h2>Artistas</h2>
+                <ul>
+                  <Row>
+                    {
+                      this.props.artists.items.map(
+                        item => (
+                          <Col xs={12} sm={4}>
+                            <Artist key={item.id} {...item} />
+                          </Col>
+                        )
+                      )
+                    }
+                  </Row>
+                </ul>
+              </div>
+            }
+
           </Grid>
         </Results>
       </ThemeProvider>
