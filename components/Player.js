@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Grid, Row, Col } from 'react-styled-flexboxgrid';
 
@@ -116,7 +116,7 @@ class Player extends Component {
   }
   handleTogglePlay = (event) => {
     if (this.audio.paused) {
-      this.audio.src ='/static/despacito.mp3';
+      this.audio.src = this.context.currentTrack;
       this.audio.play();
     } else {
       this.audio.pause();
@@ -135,6 +135,9 @@ class Player extends Component {
     })
   }
   render() {
+    // this.state
+    // this.props
+    console.log(this.context)
     return (
       <Wrapper className="">
         <PlayerGrid>
@@ -149,7 +152,7 @@ class Player extends Component {
             <Col xs={7}>
               <PlayerUI>
                 <audio
-                  src=""
+                  src={this.context.currentTrack}
                   ref={(audio) => { this.audio = audio; }}
                   onLoadedMetadata={this.onLoadedMetadata}
                   onPlay={this.onPlay}
@@ -186,6 +189,10 @@ class Player extends Component {
       </Wrapper>
     )
   }
+}
+
+Player.contextTypes = {
+  currentTrack: PropTypes.string
 }
 
 export default Player;

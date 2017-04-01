@@ -9,9 +9,12 @@ const TrackItem = styled.li`
 
 // ¿Este elemento tendrá eventos? SI class
 class Track extends Component {
+  handleClick = event => {
+    console.log(this.props)
+  }
   render() {
     return (
-      <TrackItem>
+      <TrackItem onClick={this.handleClick}>
         <Row middle="sm">
           <Col xs={12} sm={5}>
             <img

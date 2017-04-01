@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Link from 'next/link';
 import fetch from 'isomorphic-fetch';
 import Track from '../components/Track';
@@ -38,6 +38,11 @@ class ResultsPage extends Component {
     const form = event.target;
     const value = form.elements.buscar.value;
     Router.push(`/results?query=${value}`);
+  }
+  getChildContext() {
+    return {
+      currentTrack: '/static/despacito.mp3',
+    }
   }
   render() {
     console.log(this.props)
@@ -110,6 +115,10 @@ class ResultsPage extends Component {
       </ThemeProvider>
     )
   }
+}
+
+ResultsPage.childContextTypes = {
+  currentTrack: PropTypes.string
 }
 
 export default ResultsPage;
