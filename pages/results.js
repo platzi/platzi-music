@@ -11,6 +11,7 @@ import Artist from '../components/Artist';
 import Router from 'next/router';
 import Hero from '../components/Hero';
 import Player from '../components/Player';
+import '../lib/global';
 
 const Results = styled.section`
   ul {
