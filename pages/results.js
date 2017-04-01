@@ -23,12 +23,15 @@ class ResultsPage extends Component {
             this.props.tracks.items.map(
               item => {
                 const lol = item.name + 'lol';
-                // const itemProps = {...item, name: 'hola esto es un nuevo nombre'}
+                let itemProps = item;
+                if (itemProps.name === 'despacito') {
+                  itemProps = {...item, name: 'suavecito'}
+                }
                 return (
                   <Track
                     key={item.id}
                     otherName={lol}
-                    {...item}
+                    {...itemProps}
                   />
                 )
               }
