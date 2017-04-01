@@ -184,12 +184,12 @@ class Player extends Component {
 
           <Row bottom="xs">
             <Col xs={5}>
-              {this.props.playlist[0].name}
+              {this.props.playlist[this.props.currentTrack].name}
             </Col>
             <Col xs={7}>
               <PlayerUI>
                 <audio
-                  src={this.props.playlist[0].preview_url}
+                  src={this.props.playlist[this.props.currentTrack].preview_url}
                   ref={(audio) => { this.audio = audio; }}
                   onLoadedMetadata={this.onLoadedMetadata}
                   onTimeUpdate={this.onTimeUpdate}
@@ -251,6 +251,7 @@ function mapStateToProps(state) {
   return {
     nombreDesdeEstado: state.nombre,
     playlist: state.playlist,
+    currentTrack: state.currentTrack,
   }
 }
 

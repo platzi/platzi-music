@@ -20,6 +20,7 @@ import Logo from '../components/Logo';
 const data = {
   playlist: [],
   nombre: 'leonidas',
+  currentTrack: 0,
 }
 const makeStore = function(initialState = data) {
   return createStore(reducer, initialState)
