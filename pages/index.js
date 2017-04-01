@@ -24,14 +24,20 @@ const crazyTheme = {
 };
 
 class HomePage extends Component {
+  state = {
+    inputValue: '',
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
-    const value = this.searchInput.value;
+    const value = this.state.inputValue;
     Router.push(`/results?query=${value}`);
   }
 
   handleChange = (event) => {
-    console.log(event.target.value);
+    this.setState({
+      inputValue: event.target.value,
+    });
   }
 
   render() {
