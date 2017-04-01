@@ -5,7 +5,9 @@ import Track from '../components/Track';
 import { ThemeProvider } from 'styled-components';
 import { pinkTheme } from '../lib/theme.js';
 import styled from 'styled-components';
-import { Grid } from 'react-styled-flexboxgrid';
+import { Grid, Row, Col } from 'react-styled-flexboxgrid';
+import Album from '../components/Album';
+import Artist from '../components/Artist';
 
 const Results = styled.section`
   ul {
@@ -31,6 +33,7 @@ class ResultsPage extends Component {
       <ThemeProvider theme={pinkTheme}>
         <Results>
           <Grid>
+            <h2>Tracks</h2>
             <ul>
               {
                 this.props.tracks.items.map(
@@ -51,23 +54,35 @@ class ResultsPage extends Component {
                 )
               }
             </ul>
+            <h2>Albums</h2>
             <ul>
+              <Row>
               {
                 this.props.albums.items.map(
-                  item => (
-                    <li key={item.id}> {item.name} </li>
-                  )
+                  item => {
+                    return (
+                        <Col xs={12} sm={4}>
+                          <Album {...item} key={item.id}/>
+                        </Col>
+                    )
+                  }
                 )
               }
+              </Row>
             </ul>
+            <h2>Artistas</h2>
             <ul>
-              {
-                this.props.artists.items.map(
-                  item => (
-                    <li key={item.id}> {item.name} </li>
+              <Row>
+                {
+                  this.props.artists.items.map(
+                    item => (
+                      <Col xs={12} sm={4}>
+                        <Artist key={item.id} {...item} />
+                      </Col>
+                    )
                   )
-                )
-              }
+                }
+              </Row>
             </ul>
           </Grid>
         </Results>
