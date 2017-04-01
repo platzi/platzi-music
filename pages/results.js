@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Link from 'next/link';
 import fetch from 'isomorphic-fetch';
 import Track from '../components/Track';
@@ -10,6 +10,19 @@ import Album from '../components/Album';
 import Artist from '../components/Artist';
 import Router from 'next/router';
 import Hero from '../components/Hero';
+import Player from '../components/Player';
+import '../lib/global';
+import withRedux from 'next-redux-wrapper';
+import { createStore } from 'redux';
+import reducer from '../reducers/index';
+
+const data = {
+  playlist: [],
+  nombre: 'leonidas',
+}
+const makeStore = function(initialState = data) {
+  return createStore(reducer, initialState)
+}
 
 const Results = styled.section`
   ul {
@@ -19,6 +32,11 @@ const Results = styled.section`
 `
 
 class ResultsPage extends Component {
+  state = {
+    currentTrack: {
+      preview_url: '',
+    },
+  }
   static async getInitialProps({ query }) {
     const URL = `https://api.spotify.com/v1/search/?q=${query.query}&type=artist,album,track`
 
@@ -28,6 +46,7 @@ class ResultsPage extends Component {
     console.log(data);
     return data
   }
+
   handleSubmit = (event) => {
     this.setState({
       loading: true,
@@ -37,11 +56,23 @@ class ResultsPage extends Component {
     const value = form.elements.buscar.value;
     Router.push(`/results?query=${value}`);
   }
+  setTrack = (track) => {
+    console.log('set track',track);
+    this.setState({
+      currentTrack: track
+    })
+  }
+  getChildContext() {
+    return {
+      currentTrack: this.state.currentTrack,
+      setCurrentTrack: this.setTrack,
+    }
+  }
   render() {
-    console.log(this.props)
     return (
       <ThemeProvider theme={pinkTheme}>
         <Results>
+          <Player />
           <Hero
             onSubmit={this.handleSubmit}
           />
@@ -83,20 +114,25 @@ class ResultsPage extends Component {
               }
               </Row>
             </ul>
-            <h2>Artistas</h2>
-            <ul>
-              <Row>
-                {
-                  this.props.artists.items.map(
-                    item => (
-                      <Col xs={12} sm={4}>
-                        <Artist key={item.id} {...item} />
-                      </Col>
-                    )
-                  )
-                }
-              </Row>
-            </ul>
+            { this.props.artists &&
+              <div>
+                <h2>Artistas</h2>
+                <ul>
+                  <Row>
+                    {
+                      this.props.artists.items.map(
+                        item => (
+                          <Col xs={12} sm={4}>
+                            <Artist key={item.id} {...item} />
+                          </Col>
+                        )
+                      )
+                    }
+                  </Row>
+                </ul>
+              </div>
+            }
+
           </Grid>
         </Results>
       </ThemeProvider>
@@ -104,4 +140,9 @@ class ResultsPage extends Component {
   }
 }
 
-export default ResultsPage;
+ResultsPage.childContextTypes = {
+  currentTrack: PropTypes.string,
+  setCurrentTrack: PropTypes.func,
+}
+
+export default withRedux(makeStore)(ResultsPage);

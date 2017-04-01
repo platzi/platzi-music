@@ -7,9 +7,12 @@
     "es6-promise": "^4.1.0",
     "isomorphic-fetch": "^2.2.1",
     "next": "^2.0.1",
+    "next-redux-wrapper": "^1.0.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-redux": "^5.0.3",
     "react-styled-flexboxgrid": "^1.0.2",
+    "redux": "^3.6.0",
     "styled-components": "^1.4.4"
   },
   "scripts": {

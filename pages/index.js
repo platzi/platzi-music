@@ -5,6 +5,7 @@ import Router from 'next/router';
 import { pinkTheme } from '../lib/theme.js';
 import Loading from '../components/Loading';
 import { Grid } from 'react-styled-flexboxgrid';
+import '../lib/global';
 
 class HomePage extends Component {
   state = {
