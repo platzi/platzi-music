@@ -13,6 +13,7 @@ describe('Test searcher component', () => {
     render(<Searcher onSubmit={handleSubmit} />, div);
   });
 
+  // regression test -> verificar que sigue renderizando el HTML esperado
   it('should render the expected HTML', () => {
     function handleSubmit() {}
     const component = renderer.create(<Searcher onSubmit={handleSubmit} />);
