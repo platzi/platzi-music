@@ -88,6 +88,8 @@ const Play = styled(Button)`
 
 const Timer = styled.span`
   color: ${props => props.theme.color.grayB};
+  width: 50px;
+  display: inline-block;
 `;
 const Buttons = styled.div`
   display: flex;
@@ -123,7 +125,6 @@ class Player extends Component {
   }
   handleTogglePlay = (event) => {
     if (this.audio.paused) {
-      this.audio.src = this.context.currentTrack.preview_url;
       this.audio.play();
     } else {
       this.audio.pause();
@@ -146,11 +147,11 @@ class Player extends Component {
       currentProgress: (event.target.currentTime * 100) / event.target.duration,
     })
   }
-  willReceiveProps() {
-    this.setState({
-      paused: false,
-    })
-  }
+  // willReceiveProps() {
+  //   this.setState({
+  //     paused: false,
+  //   })
+  // }
   onLoadedMetadata = event => {
     console.log(event.target.duration)
     this.setState({
