@@ -1,7 +1,6 @@
 {
   "name": "platzi-music",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "dependencies": {
     "es6-promise": "^4.1.0",

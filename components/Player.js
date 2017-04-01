@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import { Grid, Row, Col } from 'react-styled-flexboxgrid';
 import { formattedTime } from '../lib/utils';
 import { connect } from 'react-redux';
+import AlbumTrack from './AlbumTrack'
 
 const bounceIn = keyframes`
   from, 20%, 40%, 60%, 80%, to {
@@ -39,14 +40,15 @@ const bounceIn = keyframes`
 
 const Wrapper = styled.section`
   position: fixed;
-  /*bottom: 0;*/
+  bottom: 0;
   left: 0;
   right: 0;
-  top: 0;
+  /*top: 0;*/
   background: white;
   border-top: 1px solid #e1e5f0;
   box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.05);
   overflow: auto;
+  max-height: 100%;
   &.is-expanded {
     /*top: 0;*/
     /*height: 100%;*/
@@ -117,6 +119,7 @@ class Player extends Component {
     duration: 0,
     currentProgress: 0,
     currentTime: 0,
+    expanded: false,
   }
   handleTogglePlay = (event) => {
     if (this.audio.paused) {
@@ -129,6 +132,7 @@ class Player extends Component {
       paused: !this.state.paused
     })
   }
+
   onPlay = (event) => {
     console.log('le diste a play');
     this.setState({
@@ -153,6 +157,11 @@ class Player extends Component {
       duration: event.target.duration
     })
   }
+  handleExpandClick = event => {
+    this.setState({
+      expanded: !this.state.expanded,
+    });
+  }
   render() {
     // this.state
     // this.props
@@ -160,13 +169,17 @@ class Player extends Component {
     if (this.props.playlist.length === 0) {
       return null;
     }
+    const expandIcon = this.state.expanded ? 'icon-arrow-bottom' : 'icon-arrow-top';
+
     return (
       <Wrapper className="">
-        {this.props.nombreDesdeEstado}
         <PlayerGrid>
-          <Expand
-            onClick={this.handleExpandClick}
-          />
+          {this.props.playlist.length > 1 &&
+            <Expand
+              onClick={this.handleExpandClick}
+              className={expandIcon}
+            />
+          }
 
           <Row bottom="xs">
             <Col xs={5}>
@@ -210,6 +223,20 @@ class Player extends Component {
               </PlayerUI>
             </Col>
           </Row>
+
+          {(this.props.playlist.length > 1 && this.state.expanded) &&
+              <Row key="album-tracks">
+                {this.props.playlist.map((item, index) => (
+                  <Col xs={12} mdOffset={5} md={7} key={item.id}>
+                    <AlbumTrack
+                      {...item}
+                      number={index + 1}
+                      active={this.props.currentTrack === index}
+                    />
+                  </Col>
+                ))}
+              </Row>
+            }
         </PlayerGrid>
       </Wrapper>
     )

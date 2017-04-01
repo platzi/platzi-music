@@ -2,14 +2,17 @@ import React, { PropTypes, Component } from 'react';
 import styled from 'styled-components';
 import { Row, Col } from 'react-styled-flexboxgrid';
 import fetch from 'isomorphic-fetch';
+import { connect } from 'react-redux';
 
-const Item = styled(Col)`
+const Item = styled.div`
   margin-bottom: 1em;
 `;
 
 const Thumb = styled.img`
-  width: 155px;
+  /*width: 155px;*/
   max-width: 100%;
+  width: 100%;
+  height: auto;
 `;
 
 const Title = styled.h4`
@@ -27,7 +30,27 @@ const Text = styled.p`
 `;
 
 
+
+async function getAlbum(url) {
+  const response = await fetch(url)
+  const data = await response.json()
+  return data
+}
+
 class Album extends Component {
+  handleClick = event => {
+    const album = getAlbum(this.props.href)
+    album.then( (data) => {
+      console.log(data);
+      this.props.dispatch({
+        type: 'SET_PLAYLIST',
+        payload: {
+          playlist: data.tracks.items,
+        }
+      })
+    })
+
+  }
   render() {
     return (
       <Item onClick={this.handleClick}>
@@ -51,4 +74,5 @@ Album.propTypes = {
 }
 
 
-export default Album;
+
+export default connect(null)(Album);

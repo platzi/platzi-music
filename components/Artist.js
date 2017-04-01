@@ -2,13 +2,13 @@ import React, { PropTypes } from 'react';
 import styled from 'styled-components';
 import { Grid, Row, Col } from 'react-styled-flexboxgrid';
 
-const Item = styled(Col)`
+const Item = styled.div`
   margin-bottom: 1em;
 `;
 
 const Thumb = styled.img`
-  height: 125px;
-  width: 125px;
+  height: auto;
+  width: 100%;
   object-fit: cover;
 `;
 
