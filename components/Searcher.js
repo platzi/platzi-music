@@ -47,7 +47,7 @@ function Searcher(props) {
   return(
     <Form onSubmit={props.onSubmit}>
       <InputSearcher
-        onChange={props.onInputChange}
+        name="buscar"
         type="text"
         placeholder="Busca por canción, artista o álbum"
       />

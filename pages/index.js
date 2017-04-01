@@ -24,20 +24,11 @@ const crazyTheme = {
 };
 
 class HomePage extends Component {
-  state = {
-    inputValue: '',
-  }
-
   handleSubmit = (event) => {
     event.preventDefault();
-    const value = this.state.inputValue;
+    const form = event.target;
+    const value = form.elements.buscar.value;
     Router.push(`/results?query=${value}`);
-  }
-
-  handleChange = (event) => {
-    this.setState({
-      inputValue: event.target.value,
-    });
   }
 
   render() {
@@ -45,7 +36,6 @@ class HomePage extends Component {
       <ThemeProvider theme={pinkTheme}>
         <Hero
           onSubmit={this.handleSubmit}
-          onInputChange={this.handleChange}
         />
       </ThemeProvider>
     );

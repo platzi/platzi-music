@@ -36,7 +36,6 @@ function Hero(props) {
           <Logo/>
           <Buscador
             onSubmit={props.onSubmit}
-            onInputChange={props.onInputChange}
           />
         </Wrapper>
       </Gradient>
