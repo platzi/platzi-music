@@ -27,13 +27,17 @@ const Wrapper = styled.div`
   }
 `;
 
+// es invocado desde HomePage
 function Hero(props) {
   return(
     <Background>
       <Gradient>
         <Wrapper>
           <Logo/>
-          <Buscador/>
+          <Buscador
+            onSubmit={props.onSubmit}
+            onInputChange={props.onInputChange}
+          />
         </Wrapper>
       </Gradient>
     </Background>

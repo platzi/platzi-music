@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Hero from '../components/Hero';
 import { ThemeProvider } from 'styled-components';
+import Router from 'next/router';
 
 const pinkTheme = {
   font: 'Quicksand',
@@ -23,11 +24,23 @@ const crazyTheme = {
 };
 
 class HomePage extends Component {
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const value = this.searchInput.value;
+    Router.push(`/results?query=${value}`);
+  }
+
+  handleChange = (event) => {
+    console.log(event.target.value);
+  }
 
   render() {
     return (
       <ThemeProvider theme={pinkTheme}>
-        <Hero />
+        <Hero
+          onSubmit={this.handleSubmit}
+          onInputChange={this.handleChange}
+        />
       </ThemeProvider>
     );
   }

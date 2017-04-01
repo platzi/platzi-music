@@ -1,6 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const DefaultStyles = `
+  outline: 0;
+  border: none;
+  border-radius: 4px;
+`;
+
 const Form = styled.form`
   display: flex;
   font-weight: bold;
@@ -8,12 +14,6 @@ const Form = styled.form`
   @media (max-width: 1024px) {
     flex-direction: column;
   }
-`;
-
-const DefaultStyles = `
-  outline: 0;
-  border: none;
-  border-radius: 4px;
 `;
 
 const InputSearcher = styled.input`
@@ -42,11 +42,15 @@ const Button = styled.button`
   }
 `;
 
-
+// es invocado desde Hero
 function Searcher(props) {
   return(
-    <Form>
-      <InputSearcher type="text" placeholder="Busca por canción, artista o álbum" />
+    <Form onSubmit={props.onSubmit}>
+      <InputSearcher
+        onChange={props.onInputChange}
+        type="text"
+        placeholder="Busca por canción, artista o álbum"
+      />
       <div>
         <Button>Buscar</Button>
       </div>
