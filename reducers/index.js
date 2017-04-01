@@ -1,6 +1,6 @@
 function reducer(state, action) {
   switch (action.type) {
-    case 'SET_TRACK':
+    case 'SET_PLAYLIST':
       return { ...state, playlist: action.payload.playlist }
     default:
       return state

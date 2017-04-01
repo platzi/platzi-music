@@ -12,7 +12,7 @@ const TrackItem = styled.li`
 class Track extends Component {
   handleClick = event => {
     this.props.dispatch({
-      type: 'SET_TRACK',
+      type: 'SET_PLAYLIST',
       payload: {
         playlist: [{...this.props}]
       }
