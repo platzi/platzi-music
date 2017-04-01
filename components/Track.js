@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import styled from 'styled-components';
 import { Col, Row } from 'react-styled-flexboxgrid';
 import { connect } from 'react-redux';
+import { formattedTime } from '../lib/utils.js';
 
 const TrackItem = styled.li`
   margin: 10px;
@@ -40,7 +41,7 @@ class Track extends Component {
             {this.props.name}
           </Col>
           <Col xs={4} sm={2}>
-            {this.props.duration_ms}
+            {formattedTime(this.props.duration_ms)}
           </Col>
         </Row>
       </TrackItem>
