@@ -116,7 +116,7 @@ class Player extends Component {
   }
   handleTogglePlay = (event) => {
     if (this.audio.paused) {
-      this.audio.src = this.context.currentTrack;
+      this.audio.src = this.context.currentTrack.preview_url;
       this.audio.play();
     } else {
       this.audio.pause();
@@ -137,7 +137,7 @@ class Player extends Component {
   render() {
     // this.state
     // this.props
-    console.log(this.context)
+    console.log(this.context.currentTrack)
     return (
       <Wrapper className="">
         <PlayerGrid>
@@ -152,10 +152,11 @@ class Player extends Component {
             <Col xs={7}>
               <PlayerUI>
                 <audio
-                  src={this.context.currentTrack}
+                  src={this.context.currentTrack.preview_url}
                   ref={(audio) => { this.audio = audio; }}
                   onLoadedMetadata={this.onLoadedMetadata}
                   onPlay={this.onPlay}
+                  autoPlay
                 />
                 <Buttons>
                   <Timer>
@@ -192,7 +193,7 @@ class Player extends Component {
 }
 
 Player.contextTypes = {
-  currentTrack: PropTypes.string
+  currentTrack: PropTypes.object
 }
 
 export default Player;

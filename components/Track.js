@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import styled from 'styled-components';
 import { Col, Row } from 'react-styled-flexboxgrid';
 
@@ -10,7 +10,7 @@ const TrackItem = styled.li`
 // ¿Este elemento tendrá eventos? SI class
 class Track extends Component {
   handleClick = event => {
-    console.log(this.props)
+    this.context.setCurrentTrack(this.props)
   }
   render() {
     return (
@@ -39,6 +39,10 @@ class Track extends Component {
       </TrackItem>
     )
   }
+}
+
+Track.contextTypes = {
+  setCurrentTrack: PropTypes.func,
 }
 
 export default Track

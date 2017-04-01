@@ -21,6 +21,11 @@ const Results = styled.section`
 `
 
 class ResultsPage extends Component {
+  state = {
+    currentTrack: {
+      preview_url: '',
+    },
+  }
   static async getInitialProps({ query }) {
     const URL = `https://api.spotify.com/v1/search/?q=${query.query}&type=artist,album,track`
 
@@ -30,6 +35,7 @@ class ResultsPage extends Component {
     console.log(data);
     return data
   }
+
   handleSubmit = (event) => {
     this.setState({
       loading: true,
@@ -39,13 +45,19 @@ class ResultsPage extends Component {
     const value = form.elements.buscar.value;
     Router.push(`/results?query=${value}`);
   }
+  setTrack = (track) => {
+    console.log('set track',track);
+    this.setState({
+      currentTrack: track
+    })
+  }
   getChildContext() {
     return {
-      currentTrack: '/static/despacito.mp3',
+      currentTrack: this.state.currentTrack,
+      setCurrentTrack: this.setTrack,
     }
   }
   render() {
-    console.log(this.props)
     return (
       <ThemeProvider theme={pinkTheme}>
         <Results>
@@ -118,7 +130,8 @@ class ResultsPage extends Component {
 }
 
 ResultsPage.childContextTypes = {
-  currentTrack: PropTypes.string
+  currentTrack: PropTypes.string,
+  setCurrentTrack: PropTypes.func,
 }
 
 export default ResultsPage;
