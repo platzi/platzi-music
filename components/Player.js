@@ -115,6 +115,7 @@ class Player extends Component {
     paused: true,
     duration: 0,
     currentProgress: 0,
+    currentTime: 0,
   }
   handleTogglePlay = (event) => {
     if (this.audio.paused) {
@@ -129,6 +130,9 @@ class Player extends Component {
   }
   onPlay = (event) => {
     console.log('le diste a play');
+    this.setState({
+      paused: false,
+    })
   }
   onTimeUpdate = event =>{
     console.log(event.target.currentTime)
@@ -138,7 +142,11 @@ class Player extends Component {
       currentProgress: (event.target.currentTime * 100) / event.target.duration,
     })
   }
-
+  willReceiveProps() {
+    this.setState({
+      paused: false,
+    })
+  }
   onLoadedMetadata = event => {
     console.log(event.target.duration)
     this.setState({
@@ -158,7 +166,7 @@ class Player extends Component {
 
           <Row bottom="xs">
             <Col xs={5}>
-              album
+              {this.context.currentTrack.name}
             </Col>
             <Col xs={7}>
               <PlayerUI>
