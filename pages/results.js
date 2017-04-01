@@ -28,7 +28,14 @@ const Results = styled.section`
   ul {
     list-style: none;
     padding-left: 0;
+    margin: 0;
   }
+
+`
+const Title = styled.h2`
+  font-size: 14px;
+  color: ${props => props.theme.color.grayB};
+  margin: 1em 0;
 `
 
 class ResultsPage extends Component {
@@ -77,7 +84,11 @@ class ResultsPage extends Component {
             onSubmit={this.handleSubmit}
           />
           <Grid>
-            <h2>Tracks</h2>
+            <Row>
+              <Col xs={12}>
+                <Title>Tracks</Title>
+              </Col>
+            </Row>
             <ul>
               {
                 this.props.tracks.items.map(
@@ -98,14 +109,18 @@ class ResultsPage extends Component {
                 )
               }
             </ul>
-            <h2>Albums</h2>
+            <Row>
+              <Col xs={12}>
+                <Title>Albums</Title>
+              </Col>
+            </Row>
             <ul>
-              <Row>
+              <Row start="xs">
               {
                 this.props.albums.items.map(
                   item => {
                     return (
-                        <Col xs={12} sm={4}>
+                        <Col xs={12} sm={3}>
                           <Album {...item} key={item.id}/>
                         </Col>
                     )
@@ -116,13 +131,17 @@ class ResultsPage extends Component {
             </ul>
             { this.props.artists &&
               <div>
-                <h2>Artistas</h2>
+                <Row>
+                  <Col xs={12}>
+                    <Title>Artistas</Title>
+                  </Col>
+                </Row>
                 <ul>
-                  <Row>
+                  <Row start="xs">
                     {
                       this.props.artists.items.map(
                         item => (
-                          <Col xs={12} sm={4}>
+                          <Col xs={12} sm={3}>
                             <Artist key={item.id} {...item} />
                           </Col>
                         )
