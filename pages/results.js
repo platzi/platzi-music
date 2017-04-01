@@ -8,6 +8,8 @@ import styled from 'styled-components';
 import { Grid, Row, Col } from 'react-styled-flexboxgrid';
 import Album from '../components/Album';
 import Artist from '../components/Artist';
+import Router from 'next/router';
+import Hero from '../components/Hero';
 
 const Results = styled.section`
   ul {
@@ -26,12 +28,23 @@ class ResultsPage extends Component {
     console.log(data);
     return data
   }
-
+  handleSubmit = (event) => {
+    this.setState({
+      loading: true,
+    })
+    event.preventDefault();
+    const form = event.target;
+    const value = form.elements.buscar.value;
+    Router.push(`/results?query=${value}`);
+  }
   render() {
     console.log(this.props)
     return (
       <ThemeProvider theme={pinkTheme}>
         <Results>
+          <Hero
+            onSubmit={this.handleSubmit}
+          />
           <Grid>
             <h2>Tracks</h2>
             <ul>

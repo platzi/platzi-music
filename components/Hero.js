@@ -2,11 +2,16 @@ import React from 'react';
 import Logo from './Logo';
 import Buscador from './Searcher';
 import styled from 'styled-components';
+import { Grid } from 'react-styled-flexboxgrid';
 
 const Gradient = styled.div`
   background: linear-gradient(to left, ${props=>props.theme.color.primary}, ${props=>props.theme.color.secondary});
   padding: 80px 0 186px;
 `;
+
+const GridHero = styled(Grid)`
+  text-align: center;
+`
 
 const Background = styled.div`
   background: url(/static/background.jpg);
@@ -32,12 +37,12 @@ function Hero(props) {
   return(
     <Background>
       <Gradient>
-        <Wrapper>
+        <GridHero>
           <Logo/>
           <Buscador
             onSubmit={props.onSubmit}
           />
-        </Wrapper>
+        </GridHero>
       </Gradient>
     </Background>
   );
