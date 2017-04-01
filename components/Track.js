@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Col, Row } from 'react-styled-flexboxgrid';
 
 const TrackItem = styled.li`
-  background: red;
-  color: white;
   margin: 10px;
 `;
 
@@ -12,8 +11,8 @@ class Track extends Component {
     console.log(this.props)
     return (
       <TrackItem>
-        <p>
-          <span>
+        <Row middle="sm">
+          <Col xs={12} sm={5}>
             <img
               src={this.props.album.images[1].url}
               width="70"
@@ -23,14 +22,14 @@ class Track extends Component {
             <span>
               {this.props.album.name}
             </span>
-          </span>
-          <span>
+          </Col>
+          <Col xs={8} sm={5}>
             {this.props.name}
-          </span>
-          <span>
+          </Col>
+          <Col xs={4} sm={2}>
             {this.props.duration_ms}
-          </span>
-        </p>
+          </Col>
+        </Row>
       </TrackItem>
     )
   }

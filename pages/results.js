@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import fetch from 'isomorphic-fetch';
 import Track from '../components/Track';
+import { ThemeProvider } from 'styled-components';
+import { pinkTheme } from '../lib/theme.js';
 
 class ResultsPage extends Component {
   static async getInitialProps({ query }) {
@@ -17,48 +19,48 @@ class ResultsPage extends Component {
   render() {
     console.log(this.props)
     return (
-      <div>
-        <ul>
-          {
-            this.props.tracks.items.map(
-              item => {
-                const lol = item.name + 'lol';
-                let itemProps = item;
-                if (itemProps.name === 'Despacito (Featuring Daddy Yankee)') {
-                  itemProps = {...item, name: 'Suavecito'}
+      <ThemeProvider theme={pinkTheme}>
+        <div>
+          <ul>
+            {
+              this.props.tracks.items.map(
+                item => {
+                  const lol = item.name + 'lol';
+                  let itemProps = item;
+                  if (itemProps.name === 'Despacito (Featuring Daddy Yankee)') {
+                    itemProps = {...item, name: 'Suavecito'}
+                  }
+                  return (
+                    <Track
+                      key={item.id}
+                      otherName={lol}
+                      {...itemProps}
+                    />
+                  )
                 }
-                return (
-                  <Track
-                    key={item.id}
-                    otherName={lol}
-                    {...itemProps}
-                  />
+              )
+            }
+          </ul>
+          <ul>
+            {
+              this.props.albums.items.map(
+                item => (
+                  <li key={item.id}> {item.name} </li>
                 )
-              }
-            )
-          }
-        </ul>
-        <ul>
-          {
-            this.props.albums.items.map(
-              item => (
-                <li key={item.id}> {item.name} </li>
               )
-            )
-          }
-        </ul>
-        <ul>
-          {
-            this.props.artists.items.map(
-              item => (
-                <li key={item.id}> {item.name} </li>
+            }
+          </ul>
+          <ul>
+            {
+              this.props.artists.items.map(
+                item => (
+                  <li key={item.id}> {item.name} </li>
+                )
               )
-            )
-          }
-        </ul>
-
-
-      </div>
+            }
+          </ul>
+        </div>
+      </ThemeProvider>
     )
   }
 }
