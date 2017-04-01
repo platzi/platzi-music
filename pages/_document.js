@@ -4,8 +4,23 @@ import Document, {
   NextScript,
   Head,
 } from 'next/document';
+import styleSheet from 'styled-components/lib/models/StyleSheet';
 
 class PlatziMusic extends Document {
+  static async getInitialProps({ renderPage }) {
+    const page = renderPage();
+    const styles = (
+      <style
+        dangerouslySetInnerHTML={{
+          __html: styleSheet
+            .rules()
+            .map(rule => rule.cssText)
+            .join('\n')
+        }}
+      />
+    );
+    return { ...page, styles };
+  }
   render() {
     return (
       <html>
