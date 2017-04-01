@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
-import fetch from 'isomorphic-fetch'
+import fetch from 'isomorphic-fetch';
+import Track from '../components/Track.js';
 
 class ResultsPage extends Component {
   static async getInitialProps({ query }) {
@@ -20,9 +21,17 @@ class ResultsPage extends Component {
         <ul>
           {
             this.props.tracks.items.map(
-              item => (
-                <li key={item.id}> {item.name} </li>
-              )
+              item => {
+                const lol = item.name + 'lol';
+                // const itemProps = {...item, name: 'hola esto es un nuevo nombre'}
+                return (
+                  <Track
+                    key={item.id}
+                    otherName={lol}
+                    {...item}
+                  />
+                )
+              }
             )
           }
         </ul>
