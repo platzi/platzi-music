@@ -17,7 +17,7 @@ import { createStore } from 'redux';
 import reducer from '../reducers/index';
 
 const makeStore = function(initialState = {}) {
-  return store = createStore(reducer, initialState)
+  return createStore(reducer, initialState)
 }
 
 const Results = styled.section`
