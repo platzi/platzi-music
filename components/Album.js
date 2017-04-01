@@ -6,6 +6,12 @@ import { connect } from 'react-redux';
 
 const Item = styled.div`
   margin-bottom: 1em;
+  cursor: pointer;
+  &:hover {
+    & h4 {
+      text-decoration: underline;
+    }
+  }
 `;
 
 const Thumb = styled.img`
@@ -19,7 +25,7 @@ const Title = styled.h4`
   font-family: ${props => props.theme.font.title};
   font-size: 1rem;
   font-weight: bold;
-  margin: 0;
+  margin: .5em 0;
 `;
 
 const Text = styled.p`
