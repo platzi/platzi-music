@@ -163,6 +163,22 @@ class Player extends Component {
       expanded: !this.state.expanded,
     });
   }
+  handlePrevTrack = event => {
+    this.props.dispatch({
+      type: 'SET_CURRENT_TRACK',
+      payload: {
+        index: this.props.currentTrack - 1,
+      }
+    })
+  }
+  handleNextTrack = event => {
+    this.props.dispatch({
+      type: 'SET_CURRENT_TRACK',
+      payload: {
+        index: this.props.currentTrack + 1,
+      }
+    })
+  }
   render() {
     // this.state
     // this.props
