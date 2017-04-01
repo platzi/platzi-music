@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import styled from 'styled-components';
 import { Col, Row } from 'react-styled-flexboxgrid';
+import { connect } from 'react-redux';
 
 const TrackItem = styled.li`
   margin: 10px;
@@ -10,6 +11,12 @@ const TrackItem = styled.li`
 // ¿Este elemento tendrá eventos? SI class
 class Track extends Component {
   handleClick = event => {
+    this.props.dispatch({
+      type: 'SET_TRACK',
+      payload: {
+        playlist: [{...this.props}]
+      }
+    })
     this.context.setCurrentTrack(this.props)
   }
   render() {
@@ -45,4 +52,4 @@ Track.contextTypes = {
   setCurrentTrack: PropTypes.func,
 }
 
-export default Track
+export default connect(null)(Track)

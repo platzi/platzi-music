@@ -16,7 +16,11 @@ import withRedux from 'next-redux-wrapper';
 import { createStore } from 'redux';
 import reducer from '../reducers/index';
 
-const makeStore = function(initialState = {}) {
+const data = {
+  playlist: [],
+  nombre: 'leonidas',
+}
+const makeStore = function(initialState = data) {
   return createStore(reducer, initialState)
 }
 

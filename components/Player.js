@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Grid, Row, Col } from 'react-styled-flexboxgrid';
 import { formattedTime } from '../lib/utils';
+import { connect } from 'react-redux';
 
 const bounceIn = keyframes`
   from, 20%, 40%, 60%, 80%, to {
@@ -155,9 +156,13 @@ class Player extends Component {
   render() {
     // this.state
     // this.props
-    console.log(this.context.currentTrack)
+    // console.log(this.context.currentTrack)
+    if (this.props.playlist.length === 0) {
+      return null;
+    }
     return (
       <Wrapper className="">
+        {this.props.nombreDesdeEstado}
         <PlayerGrid>
           <Expand
             onClick={this.handleExpandClick}
@@ -165,12 +170,12 @@ class Player extends Component {
 
           <Row bottom="xs">
             <Col xs={5}>
-              {this.context.currentTrack.name}
+              {this.props.playlist[0].name}
             </Col>
             <Col xs={7}>
               <PlayerUI>
                 <audio
-                  src={this.context.currentTrack.preview_url}
+                  src={this.props.playlist[0].preview_url}
                   ref={(audio) => { this.audio = audio; }}
                   onLoadedMetadata={this.onLoadedMetadata}
                   onTimeUpdate={this.onTimeUpdate}
@@ -214,5 +219,11 @@ class Player extends Component {
 Player.contextTypes = {
   currentTrack: PropTypes.object
 }
+function mapStateToProps(state) {
+  return {
+    nombreDesdeEstado: state.nombre,
+    playlist: state.playlist,
+  }
+}
 
-export default Player;
+export default connect(mapStateToProps)(Player);
