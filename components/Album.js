@@ -4,13 +4,15 @@ import { Row, Col } from 'react-styled-flexboxgrid';
 import fetch from 'isomorphic-fetch';
 import { connect } from 'react-redux';
 
-const Item = styled(Col)`
+const Item = styled.div`
   margin-bottom: 1em;
 `;
 
 const Thumb = styled.img`
-  width: 155px;
+  /*width: 155px;*/
   max-width: 100%;
+  width: 100%;
+  height: auto;
 `;
 
 const Title = styled.h4`

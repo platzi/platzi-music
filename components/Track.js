@@ -5,9 +5,35 @@ import { connect } from 'react-redux';
 import { formattedTime } from '../lib/utils.js';
 
 const TrackItem = styled.li`
-  margin: 10px;
+  margin-bottom: 1em;
   color: ${props => props.theme.color.grayB};
+  border-bottom: 1px solid ${props => props.theme.color.grayA};
+  cursor: pointer;
+  transition: .3s;
+  &:hover {
+    background: ${props => props.theme.color.grayB}
+    color: ${props => props.theme.color.grayA};;
+    & strong {
+      color: ${props => props.theme.color.grayA};;
+    }
+  }
+
 `;
+const Album = styled.div`
+  display: flex;
+  align-items:  center;
+  span {
+    margin-left: 1em;
+    display: inline-block;
+  }
+  strong {
+    color: ${props => props.theme.color.grayB};
+  }
+`
+const Time = styled.div`
+  text-align: right;
+  padding-right: .5em;
+`
 
 // ¿Este elemento tendrá eventos? SI class
 class Track extends Component {
@@ -25,23 +51,27 @@ class Track extends Component {
       <TrackItem onClick={this.handleClick}>
         <Row middle="sm">
           <Col xs={12} sm={5}>
-            <img
-              src={this.props.album.images[1].url}
-              width="70"
-              height="70"
-              alt={this.props.album.name}
-            />
-            <span>
-              <strong>
-                {this.props.album.name}
-              </strong>
-            </span>
+            <Album>
+              <img
+                src={this.props.album.images[1].url}
+                width="70"
+                height="70"
+                alt={this.props.album.name}
+              />
+              <span>
+                <strong>
+                  {this.props.album.name}
+                </strong>
+              </span>
+            </Album>
           </Col>
           <Col xs={8} sm={5}>
             {this.props.name}
           </Col>
           <Col xs={4} sm={2}>
-            {formattedTime(this.props.duration_ms)}
+            <Time>
+              {formattedTime(this.props.duration_ms)}
+            </Time>
           </Col>
         </Row>
       </TrackItem>
