@@ -4,6 +4,7 @@ import { Col, Row } from 'react-styled-flexboxgrid';
 
 const TrackItem = styled.li`
   margin: 10px;
+  color: ${props => props.theme.color.grayB};
 `;
 
 class Track extends Component {
@@ -20,7 +21,9 @@ class Track extends Component {
               alt={this.props.album.name}
             />
             <span>
-              {this.props.album.name}
+              <strong>
+                {this.props.album.name}
+              </strong>
             </span>
           </Col>
           <Col xs={8} sm={5}>
