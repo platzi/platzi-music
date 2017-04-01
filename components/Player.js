@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Grid, Row, Col } from 'react-styled-flexboxgrid';
+import { formattedTime } from '../lib/utils';
 
 const bounceIn = keyframes`
   from, 20%, 40%, 60%, 80%, to {
@@ -171,7 +172,7 @@ class Player extends Component {
                 />
                 <Buttons>
                   <Timer>
-                    {this.state.currentTime}
+                    {formattedTime(this.state.currentTime * 1000)}
                   </Timer>
                   <div>
                     <Button
@@ -188,7 +189,7 @@ class Player extends Component {
                     />
                   </div>
                   <Timer>
-                    {this.state.duration}
+                    {formattedTime(this.state.duration * 1000)}
                   </Timer>
                 </Buttons>
                 <Line>
