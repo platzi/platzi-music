@@ -6,7 +6,13 @@ import { pinkTheme } from '../lib/theme.js';
 
 
 class HomePage extends Component {
+  state = {
+    loading: false,
+  }
   handleSubmit = (event) => {
+    this.setState({
+      loading: true,
+    })
     event.preventDefault();
     const form = event.target;
     const value = form.elements.buscar.value;
@@ -16,9 +22,17 @@ class HomePage extends Component {
   render() {
     return (
       <ThemeProvider theme={pinkTheme}>
-        <Hero
-          onSubmit={this.handleSubmit}
-        />
+        <div>
+          <Hero
+            onSubmit={this.handleSubmit}
+          />
+          {
+            this.state.loading ?
+              <div>cargando...</div>
+            :
+              <div>no estamos cargando nada...</div>
+          }
+        </div>
       </ThemeProvider>
     );
   }
