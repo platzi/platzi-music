@@ -165,20 +165,35 @@ class Player extends Component {
     });
   }
   handlePrevTrack = event => {
+    let currentTrack = this.props.currentTrack - 1 ;
+    if (currentTrack < 0) {
+      currentTrack = this.props.playlist.length - 1;
+    }
+
     this.props.dispatch({
       type: 'SET_CURRENT_TRACK',
       payload: {
-        index: this.props.currentTrack - 1,
+        index: currentTrack,
+      }
+    })
+  }
+  nextTrack() {
+    let currentTrack = this.props.currentTrack + 1 ;
+    if (currentTrack === this.props.playlist.length) {
+      currentTrack = 0;
+    }
+    this.props.dispatch({
+      type: 'SET_CURRENT_TRACK',
+      payload: {
+        index: currentTrack,
       }
     })
   }
   handleNextTrack = event => {
-    this.props.dispatch({
-      type: 'SET_CURRENT_TRACK',
-      payload: {
-        index: this.props.currentTrack + 1,
-      }
-    })
+    this.nextTrack();
+  }
+  onEnded = event => {
+    this.nextTrack();
   }
   render() {
     // this.state
@@ -214,6 +229,7 @@ class Player extends Component {
                   onLoadedMetadata={this.onLoadedMetadata}
                   onTimeUpdate={this.onTimeUpdate}
                   onPlay={this.onPlay}
+                  onEnded={this.onEnded}
                   autoPlay
                 />
                 <Buttons>
