@@ -51,9 +51,7 @@ function Searcher(props) {
         type="text"
         placeholder="Busca por canción, artista o álbum"
       />
-      <div>
-        <Button>Buscar</Button>
-      </div>
+      <Button>Buscar</Button>
     </Form>
   );
 }

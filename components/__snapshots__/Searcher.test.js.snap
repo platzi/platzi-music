@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Searcher component should render the expected HTML 1`] = `
+<form
+  className="bdvyEE"
+  onSubmit={[Function]}
+>
+  <input
+    className="WqvUF"
+    name="buscar"
+    placeholder="Busca por canción, artista o álbum"
+    type="text"
+  />
+  <button
+    className="eJPHrw"
+  >
+    Buscar
+  </button>
+</form>
+`;
