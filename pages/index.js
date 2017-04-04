@@ -8,6 +8,7 @@ import { Grid } from 'react-styled-flexboxgrid';
 import '../lib/global';
 import Logo from '../components/Logo';
 import Title from '../components/Title';
+import Footer from '../components/Footer'
 
 class HomePage extends Component {
   state = {
@@ -38,6 +39,7 @@ class HomePage extends Component {
               this.state.loading &&
               <Loading />
             }
+            <Footer />
           </Grid>
         </div>
       </ThemeProvider>
