@@ -9,9 +9,6 @@ const Item = styled.div`
 const Title = styled.h4`
   font-weight: bold;
 `
-const Text = styled.p`
-`
-
 
 function FooterItem(props) {
   return (
@@ -19,9 +16,9 @@ function FooterItem(props) {
       <Title>
         {props.item.title}
       </Title>
-      <Text>
+      <p>
         {props.item.text}
-      </Text>
+      </p>
     </Item>
   )
 }
