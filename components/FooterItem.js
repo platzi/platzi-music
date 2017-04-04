@@ -2,8 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Item = styled.div`
-  font-family: 'Quicksand';
-  font-size: 16px;
   padding: 48px 15px;
 `
 const Title = styled.h4`
